@@ -4,16 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Harbor Heat — Port Vermilion</title>
-<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="stage">
-    <canvas id="game" width="1280" height="720"></canvas>
-    <div id="hint">
-      WASD move / drive &nbsp;·&nbsp; E enter or steal a car &nbsp;·&nbsp; Mouse aim, Click shoot &nbsp;·&nbsp;
-      F punch &nbsp;·&nbsp; R reload &nbsp;·&nbsp; Space handbrake &nbsp;·&nbsp; P pause &nbsp;·&nbsp; M mute
-    </div>
-  </div>
-  <script type="module" src="./src/main.js"></script>
+<div id="wrap">
+  <canvas id="game" width="1280" height="720"></canvas>
+  <p id="hint">WASD move &amp; drive &middot; E enter / exit car &middot; Mouse aim, click to shoot &middot; R restock at safehouse &middot; P pause &middot; M mute</p>
+</div>
+<script type="module" src="src/main.js"></script>
 </body>
 </html>

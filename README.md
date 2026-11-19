@@ -1,68 +1,46 @@
-[![make.fun — gta6-01](https://make.fun/badge/gta6-01.svg)](https://make.fun/bounty/gta6-01)
-[![rank](https://make.fun/badge/gta6-01/adenadji06/gta6-01/rank.svg)](https://make.fun/bounty/gta6-01)
-[![reward](https://make.fun/badge/gta6-01/adenadji06/gta6-01/reward.svg)](https://make.fun/bounty/gta6-01)
+# Harbor Heat
 
-# Harbor Heat — Port Vermilion
+![gta6-01](https://make.fun/badge/gta6-01.svg)
+![rank](https://make.fun/badge/gta6-01/adenadji06/gta6-01/rank.svg)
+![reward](https://make.fun/badge/gta6-01/adenadji06/gta6-01/reward.svg)
 
-An original open-world crime game for the [make.fun gta6-01 bounty](https://make.fun/bounty/gta6-01): the most complete rendition of the genre an agent can build — a city to explore on foot and by car, traffic and pedestrians, stealable cars, a wanted system with police chases, six story missions, combat, a HUD with a live minimap, a start screen and saving. It runs offline in a desktop browser from static files, with keyboard and mouse, and no network requests.
+An original open-world crime game for the [gta6-01 bounty](https://make.fun/bounty/gta6-01) on [make.fun](https://make.fun).
 
-Everything in it is original: the city of Port Vermilion, its districts (Old Town, Downtown, North Hills, The Docks, Marina, South Beach), its people (Jax Marlowe, Ray, the Vermilion PD), its cars and its story. No Rockstar Games name, logo, character, map or asset appears anywhere.
-
-## The story
-
-Jax Marlowe came home to settle a debt. Six jobs stand between him and the boat out — and the whole Vermilion police force is in the way.
-
-1. **First Wheels** — get a car, any car, to Ray's Garage.
-2. **The Collector** — collect $900 at the Docks. His friends will object.
-3. **Hot Delivery** — run a package from the Marina to North Hills in 100 seconds, with a patrol car already on you.
-4. **Heat Wave** — lose a three-star wanted level by staying out of sight.
-5. **The Harbor Job** — crack the Harbor Bank vault, grab $5,000, escape a four-star tail.
-6. **The Long Goodbye** — five stars, sixty seconds, one boat at the Pier.
-
-Finish all six and the city is yours in free roam.
-
-## Systems
-
-- **On foot and by car** — walk the sidewalks, steal any parked or driven car (the driver objects, the law notices), drive with acceleration, steering, handbrake drifts and crash damage.
-- **Traffic and pedestrians** — cars follow the road grid, wait at jams and turn at intersections; pedestrians stroll, flee gunfire and scatter from speeding cars.
-- **Wanted level and police** — 0–5 stars for theft, shootings and hit pedestrians; cruisers spawn to the heat, chase, ram and try to bust you on foot. Break line of sight to cool off.
-- **Combat** — mouse-aimed pistol (12-round magazine, reload), punches, drive-bys, and armed goons who shoot back.
-- **HUD and minimap** — cash, health, ammo, speed, car condition, flashing wanted stars, mission card with a live waypoint, distance readout, and a minimap with police, goon, pickup and objective blips.
-- **Start and save** — title screen with continue/new game, pause, and progress (cash, jobs done) saved to localStorage after every job. Busted or wasted costs a fine and a trip to the Safehouse or St. Vera Hospital.
-- **Sound** — fully synthesised WebAudio: engine hum, two-tone sirens, gunshots, crashes and jingles. No audio files. `M` mutes.
+**Harbor Heat** drops you into Port Vermilion, a fictional coastal city, as Jax Marlowe — a driver with six jobs to pull and the whole VPD on his tail. Drive, steal, shoot, and outrun the law across six districts: Old Town, Downtown, North Hills, The Docks, Marina, and South Beach.
 
 ## Play
 
-```sh
-node serve.ts        # serves game/ on http://localhost:8080
-```
+- **On foot and by car** — walk the streets, steal parked cars, or take Jax's own GT from the safehouse.
+- **Six story missions** — First Wheels, The Collector, Hot Delivery (three-minute timer, two stars on your tail), Heat Wave, The Harbor Job, and The Long Goodbye. Markers, guide lines, cash rewards, and a save in localStorage.
+- **Wanted 0–5 stars** — crimes raise your heat; VPD interceptors chase, ram, and bust you (10% cash loss). Lose the tail and the heat decays.
+- **Combat** — pistol with mouse aim, 24 rounds, restock at the safehouse with R.
+- **Living city** — 22 traffic cars looping the road grid, 36 pedestrians, a live minimap, procedural WebAudio (engine, sirens, gunshots).
 
-Or open `game/index.html` directly from any static server. Node 22 or a modern desktop browser is all it needs.
+## Controls
 
 | Key | Action |
 | --- | --- |
-| WASD / arrows | Move on foot · drive (W accelerate, S brake/reverse, A/D steer) |
-| Shift | Run |
-| E | Enter / steal a car · exit a car |
-| Mouse + Click | Aim and shoot (works on foot and as a drive-by) |
-| F | Punch |
-| R | Reload |
-| Space | Handbrake |
-| P / Esc | Pause |
+| WASD / arrows | Walk and drive |
+| E | Enter / exit a car |
+| Mouse + click | Aim and shoot |
+| R | Restock ammo at the safehouse |
+| P | Pause |
 | M | Mute |
 
-## Layout
+## Run it
 
-- `game/index.html` + `game/style.css` — page shell.
-- `game/src/config.js` — tuning, palette, the city bible (districts, landmarks).
-- `game/src/world.js` — the seeded city: roads, blocks, buildings, parks, beach and bay, plus collision.
-- `game/src/sim.js` — the simulation: player, cars, traffic AI, pedestrians, police pursuit, combat, wanted heat, pickups, particles.
-- `game/src/missions.js` — the six-job story.
-- `game/src/render.js` — canvas drawing: city, cars, people, HUD, minimap, screens.
-- `game/src/audio.js` — synthesised sound. `game/src/input.js` — keyboard + mouse.
-- `game/src/shots.js` — the four staged screenshots (`?shot=start|play|chase|end`).
-- `main.ts` — hands the entry in: copies `game/` + `screenshots/` to `/output` and writes `dossier.json` with the vendored make.fun library.
-- `serve.ts` — the local static server. `shots.json` — the screenshot list.
+```sh
+node serve.ts
+# open http://localhost:8080
+```
+
+Build the submission dossier:
+
+```sh
+mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+```
+
+Static files only — no network requests, no build step, no dependencies. All art, characters, and places are original; nothing is taken from any existing game, film, or brand.
 
 ## License
 
